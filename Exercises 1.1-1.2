@@ -1,0 +1,16 @@
+mpozz@MacBook-Air-di-Matteo ~ % docker ps -a  
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                     PORTS     NAMES
+086e5800df83   nginx     "/docker-entrypoint.…"   17 seconds ago   Exited (0) 4 seconds ago             pensive_ellis
+0752cd5099ca   nginx     "/docker-entrypoint.…"   22 seconds ago   Up 22 seconds              80/tcp    condescending_engelbart
+e1cab1075cda   nginx     "/docker-entrypoint.…"   23 seconds ago   Up 23 seconds              80/tcp    exciting_satoshi
+2c5dd1cc3bcd   nginx     "/docker-entrypoint.…"   25 seconds ago   Up 25 seconds              80/tcp    eager_hopper
+
+mpozz@MacBook-Air-di-Matteo ~ % docker stop 07 e1 2c
+...
+mpozz@MacBook-Air-di-Matteo ~ % docker container prune
+mpozz@MacBook-Air-di-Matteo ~ % docker ps -a          
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+mpozz@MacBook-Air-di-Matteo ~ % docker image rm nginx
+mpozz@MacBook-Air-di-Matteo ~ % docker image ls                
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
