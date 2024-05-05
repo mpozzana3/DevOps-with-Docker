@@ -1,0 +1,55 @@
+mpozz@MacBook-Air-di-Matteo ~ % docker pull devopsdockeruh/simple-web-service:ubuntu
+
+ubuntu: Pulling from devopsdockeruh/simple-web-service
+5d3b2c2d21bb: Pull complete 
+3fc2062ea667: Pull complete 
+75adf526d75b: Pull complete 
+965d4bbb586a: Pull complete 
+4f4fb700ef54: Pull complete 
+Digest: sha256:d44e1dce398732e18c7c2bad9416a072f719af33498302b02929d4c112e88d2a
+Status: Downloaded newer image for devopsdockeruh/simple-web-service:ubuntu
+docker.io/devopsdockeruh/simple-web-service:ubuntu
+
+What's Next?
+  View a summary of image vulnerabilities and recommendations → docker scout quickview devopsdockeruh/simple-web-service:ubuntu
+
+mpozz@MacBook-Air-di-Matteo ~ % docker run -d --name excercise1.3  devopsdockeruh/simple-web-service:ubuntu
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+6c31d484049a6b0da0ade87ab54ab04d1f7ded949d194d253ff67f56dbfd51cd
+
+mpozz@MacBook-Air-di-Matteo ~ % docker exec -it excercise1.3 bash
+root@6c31d484049a:/usr/src/app# tail -f ./text.log
+2024-05-05 15:03:01 +0000 UTC
+2024-05-05 15:03:03 +0000 UTC
+Secret message is: 'You can find the source code here: https://github.com/docker-hy'
+2024-05-05 15:03:05 +0000 UTC
+2024-05-05 15:03:07 +0000 UTC
+2024-05-05 15:03:09 +0000 UTC
+2024-05-05 15:03:11 +0000 UTC
+2024-05-05 15:03:13 +0000 UTC
+Secret message is: 'You can find the source code here: https://github.com/docker-hy'
+2024-05-05 15:03:15 +0000 UTC
+2024-05-05 15:03:17 +0000 UTC
+2024-05-05 15:03:19 +0000 UTC
+2024-05-05 15:03:21 +0000 UTC
+2024-05-05 15:03:23 +0000 UTC
+Secret message is: 'You can find the source code here: https://github.com/docker-hy'
+2024-05-05 15:03:25 +0000 UTC
+2024-05-05 15:03:27 +0000 UTC
+2024-05-05 15:03:29 +0000 UTC
+2024-05-05 15:03:31 +0000 UTC
+2024-05-05 15:03:33 +0000 UTC
+Secret message is: 'You can find the source code here: https://github.com/docker-hy'
+2024-05-05 15:03:35 +0000 UTC
+^C
+root@6c31d484049a:/usr/src/app# exit
+exit
+
+mpozz@MacBook-Air-di-Matteo ~ % docker stop excercise1.3
+excercise1.3
+
+mpozz@MacBook-Air-di-Matteo ~ % docker rm excercise1.3
+excercise1.3
+
+mpozz@MacBook-Air-di-Matteo ~ % docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
