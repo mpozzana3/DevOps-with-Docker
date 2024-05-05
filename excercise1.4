@@ -1,0 +1,40 @@
+mpozz@MacBook-Air-di-Matteo ~ % docker run -it --name excercise1.4 ubuntu bash
+root@c5675cbe0b84:/# apt-get update
+...
+...
+...
+Fetched 21.8 MB in 3s (7487 kB/s)                          
+Reading package lists... Done
+root@c5675cbe0b84:/# apt-get install -y curl
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  ca-certificates krb5-locales libbrotli1 libcurl4t64 libdb5.3t64 libgssapi-krb5-2 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-common libldap2 libnghttp2-14 libpsl5t64 librtmp1
+  libsasl2-2 libsasl2-modules libsasl2-modules-db libssh-4 openssl publicsuffix
+Suggested packages:
+  krb5-doc krb5-user libsasl2-modules-gssapi-mit | libsasl2-modules-gssapi-heimdal libsasl2-modules-ldap libsasl2-modules-otp libsasl2-modules-sql
+The following NEW packages will be installed:
+  ca-certificates curl krb5-locales libbrotli1 libcurl4t64 libdb5.3t64 libgssapi-krb5-2 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-common libldap2 libnghttp2-14 libpsl5t64 librtmp1
+  libsasl2-2 libsasl2-modules libsasl2-modules-db libssh-4 openssl publicsuffix
+0 upgraded, 22 newly installed, 0 to remove and 0 not upgraded.
+Need to get 4280 kB of archives.
+After this operation, 11.6 MB of additional disk space will be used.
+...
+...
+...
+Updating certificates in /etc/ssl/certs...
+0 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+done.
+root@c5675cbe0b84:/# while true; do echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website; done
+Input website:
+helsinki.fi
+Searching..
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx/1.22.1</center>
+</body>
+</html>
