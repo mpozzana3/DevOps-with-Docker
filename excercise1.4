@@ -38,3 +38,28 @@ Searching..
 <hr><center>nginx/1.22.1</center>
 </body>
 </html>
+
+
+OR 
+
+
+mpozz@MacBook-Air-di-Matteo ~ % docker run -d -it  --name excercise1.4 ubuntu 
+1143b5874dcbd95b58dd5927f3f5b073b6071cf3a059acb32990f42ef0b38979
+mpozz@MacBook-Air-di-Matteo ~ % docker ps -a                                  
+CONTAINER ID   IMAGE     COMMAND       CREATED         STATUS         PORTS     NAMES
+1143b5874dcb   ubuntu    "/bin/bash"   4 seconds ago   Up 3 seconds             excercise1.4
+mpozz@MacBook-Air-di-Matteo ~ % docker exec -it excercise1.4 bash             
+root@1143b5874dcb:/# apt-get update
+root@1143b5874dcb:/# apt-get install -y curl
+root@1143b5874dcb:/# exit
+mpozz@MacBook-Air-di-Matteo ~ % docker exec -it  excercise1.4 sh -c 'while true; do echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website; done'
+Input website:
+helsinki.fi
+Searching..
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx/1.22.1</center>
+</body>
+</html>
