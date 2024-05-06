@@ -1,0 +1,39 @@
+mpozz@MacBook-Air-di-Matteo ~ % docker pull devopsdockeruh/simple-web-service:alpine
+...
+What's Next?
+  1. Sign in to your Docker account → docker login
+  2. View a summary of image vulnerabilities and recommendations → docker scout quickview devopsdockeruh/simple-web-service:alpine
+mpozz@MacBook-Air-di-Matteo ~ % docker image ls                                     
+REPOSITORY                          TAG               IMAGE ID       CREATED        SIZE
+ubuntu                              latest            fabf3a8d4949   6 days ago     98.8MB
+ubuntu                              22.04             7423357ed609   8 days ago     69.2MB
+fav_distro                          jammy_jellyfish   7423357ed609   8 days ago     69.2MB
+postgres                            latest            d4ffc32b30ba   2 months ago   453MB
+nginx                               latest            48b4217efe5e   2 months ago   192MB
+devopsdockeruh/simple-web-service   ubuntu            4e3362e907d5   3 years ago    83MB
+devopsdockeruh/simple-web-service   alpine            fd312adc88e0   3 years ago    15.7MB
+one image size is 83MB the other 15.7MB
+
+mpozz@MacBook-Air-di-Matteo ~ % docker run -d --name excercise1.5  devopsdockeruh/simple-web-service:alpine
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+27be62a5e1a3b4c8763d4b499d9f2f23b9043c022786e30474c94bf0e1677b18
+mpozz@MacBook-Air-di-Matteo ~ % docker exec -it excercise1.5 sh                                            
+/usr/src/app # tail -f ./text.log
+2024-05-06 13:58:52 +0000 UTC
+2024-05-06 13:58:54 +0000 UTC
+2024-05-06 13:58:56 +0000 UTC
+2024-05-06 13:58:58 +0000 UTC
+Secret message is: 'You can find the source code here: https://github.com/docker-hy'
+2024-05-06 13:59:00 +0000 UTC
+2024-05-06 13:59:02 +0000 UTC
+2024-05-06 13:59:04 +0000 UTC
+2024-05-06 13:59:06 +0000 UTC
+2024-05-06 13:59:08 +0000 UTC
+Secret message is: 'You can find the source code here: https://github.com/docker-hy'
+2024-05-06 13:59:10 +0000 UTC
+e2024-05-06 13:59:12 +0000 UTC
+2024-05-06 13:59:14 +0000 UTC
+2024-05-06 13:59:16 +0000 UTC
+^C
+/usr/src/app # exit
+mpozz@MacBook-Air-di-Matteo ~ % 
