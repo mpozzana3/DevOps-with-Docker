@@ -1,3 +1,47 @@
+Exercises 1.7
+Dockerfile:
+
+# Start from the ubuntu:22.04
+FROM ubuntu:22.04
+
+# Use /usr/src/app as our workdir. The following instructions will be executed in this location.
+WORKDIR /usr/src/app
+
+# Update the apt package list and install curl
+RUN apt-get update
+RUN apt-get install -y curl
+
+# Copy the script.sh file from this directory to /usr/src/app/ creating /usr/src/app/script.sh
+COPY script.sh .
+
+# Alternatively, if we skipped chmod earlier, we can add execution permissions during the build.
+RUN chmod +x script.sh
+
+# When running docker run the command will be ./script.sh
+CMD ./script.sh
+
+mpozz@MacBook-Air-di-Matteo ~ % docker build -t curler .
+....
+mpozz@MacBook-Air-di-Matteo ~ % docker run -it curler 
+Input website:
+helsinky.fi
+Searching..
+curl: (6) Could not resolve host: helsinky.fi
+Input website:
+helsinki.fi
+Searching..
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx/1.22.1</center>
+</body>
+</html>
+Input website:
+
+
+Exercises 1.8
+
 Dockerfile:
 
 
