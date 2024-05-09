@@ -29,3 +29,7 @@ ENV REQUEST_ORIGIN=https://example.com
 
 # Command to run the executable
 CMD ["./server"]
+
+Outside the Dockerfile
+mpozz@MacBook-Air-di-Matteo example-backend % docker build --platform linux/amd64 -t excercise1_13 .
+mpozz@MacBook-Air-di-Matteo example-backend % docker run -p 8080:8080 excercise1_13        
