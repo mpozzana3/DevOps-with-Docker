@@ -20,12 +20,12 @@ RUN npm run build
 RUN npm install -g serve
 
 # Expose the port
-EXPOSE 5000
+EXPOSE 5001
 
 # Command to serve
-CMD ["serve", "-s", "-l", "5000", "build"]
+CMD ["serve", "-s", "-l", "5001", "build"]
 
 
 Outside the Dockerfile:
 docker build -t excercise1_12 . 
-docker run -p 5001:5000 excercise1_12 
+docker run -p 5001:5001 excercise1_12 
