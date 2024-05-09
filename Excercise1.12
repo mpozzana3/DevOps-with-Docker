@@ -1,0 +1,31 @@
+# Start with a base image containing Node.js version 16
+FROM node:16
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the local code to the container's work directory
+COPY . .
+
+# Build the static files
+RUN npm run build
+
+# Install `serve` to serve the static files
+RUN npm install -g serve
+
+# Expose the port
+EXPOSE 5000
+
+# Command to serve
+CMD ["serve", "-s", "-l", "5000", "build"]
+
+
+Outside the Dockerfile:
+docker build -t excercise1_12 . 
+docker run -p 5001:5000 excercise1_12 
