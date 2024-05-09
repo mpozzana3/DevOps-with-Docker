@@ -25,7 +25,6 @@ EXPOSE 8080
 
 # Declare environment variables
 ENV PORT=8080
-ENV REQUEST_ORIGIN=https://example.com
 
 # Command to run the executable
 CMD ["./server"]
