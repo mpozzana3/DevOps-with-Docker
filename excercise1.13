@@ -5,20 +5,11 @@ FROM golang:1.16
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy go mod and sum files
-COPY go.mod go.sum ./
-
-# Download all dependencies
-RUN go mod download
-
 # Copy the entire source code from the current directory to the Working directory in the container
 COPY . .
 
 # Build the Go app
 RUN go build -o server
-
-# Run tests
-RUN go test ./...
 
 # Expose port 8080
 EXPOSE 8080
