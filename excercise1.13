@@ -1,24 +1,28 @@
 Dockerfile:
-# Start with a base image
+# Use a golang base image
 FROM golang:1.16
 
-# Set the working directory inside the container
+# Set the working directory in the container
 WORKDIR /app
 
-# Copy the entire source code from the current directory to the Working directory in the container
+# Copy the source code into the container
 COPY . .
 
-# Build the Go app
+# Run tests before building
+RUN go test ./...
+
+# Build the project
 RUN go build -o server
 
 # Expose port 8080
 EXPOSE 8080
 
-# Declare environment variables
+# Set default values for environment variables
 ENV PORT=8080
 
-# Command to run the executable
+# Command to run the server
 CMD ["./server"]
+
 
 Outside the Dockerfile
 mpozz@MacBook-Air-di-Matteo example-backend % docker build --platform linux/amd64 -t excercise1_13 .
