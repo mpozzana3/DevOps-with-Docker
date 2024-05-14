@@ -1,62 +1,65 @@
 Dockerfile backend
-# Start with a base image
+# Use a golang base image
 FROM golang:1.16
-
-# Set the working directory inside the container
-WORKDIR /app
-
-# Copy go mod and sum files
-COPY go.mod go.sum ./
-
-# Download all dependencies.
-RUN go mod download
-
-# Copy the entire source code from the current directory to the Working directory in the container
-COPY . .
-
-# Build the Go app
-RUN go build -o server
-
-# Run tests
-RUN go test ./...
-
-# Expose port 8080                     
-EXPOSE 8080
-
-# Declare environment variables
-ENV PORT=8080
-ENV REQUEST_ORIGIN=http://frontend:5001
-
-# Command to run the executable
-CMD ["./server"]
-
-Dockerfile frontend
-# Start with a base image containing Node.js version 16
-FROM node:16
 
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+ENV PATH /usr/local/go/bin:$PATH
+
+ENV REQUEST_ORIGIN http://localhost:5001
+
+# Copy the source code into the container
+COPY . .
+
+# Run tests before building
+RUN go test ./...
+
+# Build the project
+RUN go build -o server
+
+# Expose port 8080
+EXPOSE 8080
+
+# Set default values for environment variables
+ENV PORT=8080
+
+# Command to run the server
+CMD ["./server"]
+
+
+Dockerfile frontend
+# Use a base image with node pre-installed
+FROM node:16
+
+# Install node using NodeSource script
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
+    && apt-get update \
+    && apt-get install -y nodejs
+
+# Set the working directory in the container
+WORKDIR /app
+
+ENV REACT_APP_BACKEND_URL=http://localhost:8080
+
+# Copy package.json and package-lock.json (if present)
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy the local code to the container's work directory
+# Copy the rest of the application code
 COPY . .
 
-# Build the static files
+# Build static files
 RUN npm run build
 
-# Install `serve` to serve the static files
+# Install serve globally
 RUN npm install -g serve
 
-# Expose the port
+# Expose port 5001
 EXPOSE 5001
 
-# Set environment variable for the backend URL
-ENV REACT_APP_BACKEND_URL=http://backend:8080
-
-# Command to serve
+# Command to serve the project
 CMD ["serve", "-s", "-l", "5001", "build"]
+
