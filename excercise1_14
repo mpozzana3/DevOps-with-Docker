@@ -63,3 +63,9 @@ EXPOSE 5001
 # Command to serve the project
 CMD ["serve", "-s", "-l", "5001", "build"]
 
+
+mpozz@MacBook-Air-di-Matteo example-backend % docker build . -t hello-frontend         
+mpozz@MacBook-Air-di-Matteo example-backend % docker run -d -p 5001:5001 hello-frontend
+mpozz@MacBook-Air-di-Matteo example-backend % docker build . -t hello-backend          
+mpozz@MacBook-Air-di-Matteo example-backend % docker run -d -p 8080:8080 hello-backend 
+
