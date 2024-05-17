@@ -1,0 +1,18 @@
+https://hub.docker.com/repository/docker/mpozzana3/excercise1.15
+
+
+I took the little image created for excercise1.15, with Dockerfile:
+# Usa un'immagine leggera di Nginx
+FROM nginx:alpine
+
+# Copia il file HTML nella directory di default di Nginx
+COPY index.html /usr/share/nginx/html/index.html
+
+COPY . .
+
+# Esponi la porta 80 del container
+EXPOSE 80
+
+than with render.com i deployed the web app passing the URL of the public Docker Hub repository.
+
+https://excercise1-16.onrender.com/
