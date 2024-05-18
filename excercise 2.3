@@ -1,0 +1,14 @@
+docker-compose.yml:
+version: "3.9"
+
+services:
+    backend:
+        container_name: backend
+        build: ./example-backend
+        ports:
+            - 8080:8080
+    frontend:
+        container_name: frontend
+        build: ./example-frontend
+        ports:
+            - 5001:5001
