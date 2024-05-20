@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  backend:
+    container_name: backend
+    build: ./example-backend
+    ports:
+      - 8080:8080
+    environment:
+      - REDIS_HOST=redis
+    depends_on:
+      - redis
+
+  frontend:
+    container_name: frontend
+    build: ./example-frontend
+    ports:
+      - 5001:5001
+    environment:
+      - REACT_APP_BACKEND_URL=http://backend:8080
+
+  redis:
+    container_name: redis
+    image: redis:latest
+    restart: unless-stopped
